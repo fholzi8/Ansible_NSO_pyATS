@@ -1,4 +1,4 @@
-# Ansible_NSO_pyATS
+<p>Section about Ansible and NSO and pyATS and why a combination is a good way to start with orchestration</p>
 
 Ansible is a great tool. Simply to learn and to start to automate tasks. But still it is a configuration management tool. 
 Of course you can automate some tasks but there a good reason why not each operation is a good task for Ansible.
