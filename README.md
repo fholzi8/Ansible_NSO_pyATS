@@ -62,4 +62,78 @@ First of all, what is to do to write an Ansible playbook?
 Comfiguration file could look like this:
 
  
+	# cat etc/logging_config.yaml
+	archive: 
+	- "archive"
+	- "log config"
+	- "logging enable"
+	- "notify syslog contenttype plaintext"
+	- "hidekeys"
+	logging_source: "logging source-interface mgmt0"
+	logging_servers:
+	- "logging server 1.1.1.1"
+	- "logging server 1.1.1.2"
+	
+	
+	- name: "GET LOGGING CONFIGURATION"
+	      register: get_logging_config
+	      ios_command:
+	        provider: "{{ provider }}"
+	        commands:
+	          - "show running-config | include log config"
+	          - "show running-config | include logging source"
+	          - "show running-config | include logging host"
+	- name: "SET ARCHIVE"
+		  !when: "(archive is defined) and (archive != get_logging_stdout_lines[0][0])"
+		  register: set_archive
+		  ios_config:
+		  	provider: "{{ provider }}"
+		  	lines:
+		  	  * "{{ item }}"
+	- name: "POSTPONE CONFIGURATION SAVE"
+	      when: "(set_archive.changed == true)"
+	      set_fact: configured=true
+	- name: "SET Logging SERVER"
+	      when: "(item not in get_logging_config.stdout_lines[2])"
+	      with_items: "{{ logging_servers }}"
+	      register: set_logging_server
+	      ios_config:
+	        provider: "{{ provider }}"
+	        lines:
+	          * "{{ item }}"
+	- name: "POSTPONE CONFIGURATION SAVE"
+	      when: "(set_logging_server.changed == true)"
+	      set_fact: configured=true
+	- name: "REMOVE LOGGING SERVER"
+	      when: "(item not in logging_servers)"
+	      with_items: "{{ get_logging_config.stdout_lines[2] }}"
+	      register: remove_logging_server
+	      ios_config:
+	        provider: "{{ provider }}"
+	        lines:
+	          - "no {{ item }}"
+	- name: "POSTPONE CONFIGURATION SAVE"
+	      when: "(remove_logging_server.changed == true)"
+	      set_fact: configured=true
+	
+Which configuration lines are missing to have a good baseline for a logging configuration
+	
+	logging level local7 
+#(or other severity could be defined depending on device type[switch: local7; wireless: local5; security:local0; router:local1])
 
+	logging source-interface mgmt0  
+#(sometimes mgmt-intf not used nor available, InB using VLAN or a loopback interface is used)
+
+	logging timestamp milliseconds  
+#(default: seconds or on IOS-XE devices the command is not available)
+	
+	logging monitor (6|informational)
+#depending on the OS of the devices
+
+	logging origin-id hostname
+
+Also a could explanation of how complex it could be to use only ansible tasks is here: <a href="http://www.routereflector.com/2017/02/managing-ntp-on-cisco-ios-with-ansible/">Managing NTP on Cisco IOS with Ansible</a>
+
+<h1>What is pyATS</h1>
+
+Here are some good videos about pyATS, XPresso and NetworkAutomation: <a href="https://www.ciscolive.com/global/on-demand-library.html?search=pyats&search.event=ciscoliveus2020#/session/1573153551586001Jsor">Everybody can NetDevOps</a>
