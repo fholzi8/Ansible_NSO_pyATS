@@ -59,7 +59,7 @@ First of all, what is to do to write an Ansible playbook?
  * add logging server(s) and remove wrong ones
  * save configuration if necessary
 
-Comfiguration file could look like this:
+Configuration file could look like this:
 
  
 	# cat etc/logging_config.yaml
