@@ -1,5 +1,8 @@
 <h1>Section about Ansible and NSO and pyATS and why a combination is a good way to start with orchestration</h1>
 
+<a href="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/Wanna_code_but.jpeg">
+ <img class="aligncenter size-full wp-image-362" src="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/Wanna_code_but.jpeg" alt="" width="1477" height="617" srcset="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/Wanna_code_but.jpeg 1477w, https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/Wanna_code_but.jpeg 300w, https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/Wanna_code_but.jpeg 768w, https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/Wanna_code_but.jpeg 1024w" sizes="(max-width: 1477px) 100vw, 1477px" />
+</a>
 Ansible is a great tool. Simply to learn and to start to automate tasks. But still it is a configuration management tool. 
 Of course you can automate some tasks but there a good reason why not each operation is a good task for Ansible.
 
