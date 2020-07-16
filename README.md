@@ -19,10 +19,10 @@ With NSO, you get (1) from the NEDs and with FASTMAP you only need to write the 
 
 Here a link to NSO for-personal-use: <a href="https://developer.cisco.com/site/nso/"> NSO on DEVNET</a>
 
-<a href="https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png">
- <img class="aligncenter size-full wp-image-362" src="https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png" alt="" width="1477" height="617" 
- srcset="https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 1477w, https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 300w, 
- https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 768w, hhttps://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 1024w" 
+<a href="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/fastmap.png">
+ <img class="aligncenter size-full wp-image-362" src="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/fastmap.png" alt="" width="1477" height="617" 
+ srcset="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/fastmap.png 1477w, https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/fastmap.png 300w, 
+ https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/fastmap.png 768w, https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/fastmap.png 1024w" 
  sizes="(max-width: 1477px) 100vw, 1477px" />
 </a>
 
@@ -30,20 +30,36 @@ Here a link to NSO for-personal-use: <a href="https://developer.cisco.com/site/n
 
 Configure ip helpers to interfaces
 
-  name: configure ip helpers on multiple interfaces
-  ios_config:
-    lines:
-      - ip helper-address 172.26.1.10
-      - ip helper-address 172.26.3.8
-    parents: "{{ item }}"
-  with_items:
-    - interface Ethernet1
-    - interface Ethernet2
-    - interface GigabitEthernet1
-  
-- name: check the running-config against master config
-  ios_config:
-    diff_against: intended
-    intended_config: "{{ lookup('file', 'master.cfg') }}"
+	- name: configure ip helpers on multiple interfaces
+	ios_config:
+	 lines:
+		 - ip helper-address 172.26.1.10
+ 		- ip helper-address 172.26.3.8
+	 parents: "{{ item }}"
+	with_items:
+		 - interface Ethernet1
+ 		- interface Ethernet2
+		 - interface GigabitEthernet1
+	
+	- name: check the running-config against master config
+	 ios_config:
+ 	  diff_against: intended
+ 	  intended_config: "{{ lookup('file', 'master.cfg') }}"
 
-And how does it look if you do a task with regex
+And how does it look if you do a little bit more intelligent task for example managing syslog?
+
+First of all, what is to do to write an Ansible playbook?
+
+<h5>Planning a Playbook</h5>
+
+ * read configuration 
+ * get networkdevice configuration
+ * add logging level and severity
+ * update terminal/buffered logging if needed
+ * add logging server(s) and remove wrong ones
+ * save configuration if necessary
+
+Comfiguration file could look like this:
+
+ 
+
