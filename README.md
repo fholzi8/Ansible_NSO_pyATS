@@ -19,10 +19,10 @@ With NSO, you get (1) from the NEDs and with FASTMAP you only need to write the 
 
 Here a link to NSO for-personal-use: <a href="https://developer.cisco.com/site/nso/"> NSO on DEVNET</a>
 
-<a href="https://github.com/fholzi8/Ansible_NSO_pyATS/FASTMAP.png">
- <img class="aligncenter size-full wp-image-362" src="https://github.com/fholzi8/Ansible_NSO_pyATS/FASTMAP.png" alt="" width="1477" height="617" 
- srcset="https://github.com/fholzi8/Ansible_NSO_pyATS/FASTMAP.png 1477w, https://github.com/fholzi8/Ansible_NSO_pyATS/FASTMAP.png 300w, 
- https://github.com/fholzi8/Ansible_NSO_pyATS/FASTMAP.png 768w, hhttps://github.com/fholzi8/Ansible_NSO_pyATS/FASTMAP.png 1024w" 
+<a href="https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png">
+ <img class="aligncenter size-full wp-image-362" src="https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png" alt="" width="1477" height="617" 
+ srcset="https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 1477w, https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 300w, 
+ https://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 768w, hhttps://github.com/fholzi8/Ansible_NSO_pyATS/fastmap.png 1024w" 
  sizes="(max-width: 1477px) 100vw, 1477px" />
 </a>
 
@@ -30,7 +30,7 @@ Here a link to NSO for-personal-use: <a href="https://developer.cisco.com/site/n
 
 Configure ip helpers to interfaces
 
-  - name: configure ip helpers on multiple interfaces
+  name: configure ip helpers on multiple interfaces
   ios_config:
     lines:
       - ip helper-address 172.26.1.10
