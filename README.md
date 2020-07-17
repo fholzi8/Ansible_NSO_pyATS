@@ -146,13 +146,18 @@ Also a could explanation of how complex it could be to use only ansible tasks is
 
 Starting with a good use case as explained here: <a href="https://github.com/jmullool/Ansible-driven-NSO-service-automation">Ansible-driven-NSO-service-automation</a>
 
-<img src="">
+<img src="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/UseCase1.png">
 
 <h5>Advantages</h5>
-
+* vendor-independent
+* stateful
+* agentless (but NED needed)
+* fast and reliable due to Netconf
+* YAML-based playbooks
 
 <h5>Disadvantages</h5>
-
+* not open-source
+* training needed (but self-learning available <a href="https://developer.cisco.com/docs/nso/#!learning-nso/the-first-day"> Learning-NSO</a>
 
 <h5>Typical Questions</h5>
 
