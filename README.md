@@ -151,15 +151,15 @@ Starting with a good use case as explained here: <a href="https://github.com/jmu
 <img src="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/UseCase1.png">
 
 <h4>Advantages</h4>
-* vendor-independent
-* stateful
-* agentless (but NED needed)
-* fast and reliable due to Netconf
-* YAML-based playbooks
+ * vendor-independent
+ * stateful
+ * agentless (but NED needed)
+ * fast and reliable due to Netconf
+ * YAML-based playbooks
 
 <h4>Disadvantages</h4>
-* not open-source
-* training needed (but self-learning available <a href="https://developer.cisco.com/docs/nso/#!learning-nso/the-first-day"> Learning-NSO</a>
+ * not open-source
+ * training needed (but self-learning available <a href="https://developer.cisco.com/docs/nso/#!learning-nso/the-first-day"> Learning-NSO</a>
 
 <h4>Typical Questions</h4>
 
