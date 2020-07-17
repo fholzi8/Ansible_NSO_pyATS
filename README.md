@@ -146,7 +146,7 @@ Also a could explanation of how complex it could be to use only ansible tasks is
 
 <h3>NSO</h3>
 
-Starting with a good use case as explained here: <a href="https://github.com/jmullool/Ansible-driven-NSO-service-automation">Ansible-driven-NSO-service-automation</a>
+Starting with a good use case, can be found here: <a href="https://github.com/jmullool/Ansible-driven-NSO-service-automation">Ansible-driven-NSO-service-automation</a>
 
 <img src="https://github.com/fholzi8/Ansible_NSO_pyATS/blob/master/UseCase1.png">
 
