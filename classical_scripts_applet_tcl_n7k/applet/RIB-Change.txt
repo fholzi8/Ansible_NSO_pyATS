@@ -1,0 +1,19 @@
+http://www.cisco.com/en/US/docs/ios/netmgmt/command/reference/nm_01.html#wp1012749
+
+show event manager environment all
+
+event manager applet RIB-MONITOR
+ event routing network 0.0.0.0/0 type modify  / ge 1
+ action 1.0 set msg "Route changed: Type $_routing_type, Network: $_routing_network, Mask/Prefix: $_routing_mask, Protocol: $_routing_protocol, GW: $_routing_lastgateway, Interface: $_routing_lastinterface"
+ action 2.0 syslog msg "$msg"
+ action 3.0 snmp-trap strdata "$msg"
+ action 4.0 info type routername
+ action 5.0 mail server "<smtp-ip-add>" to "<receiver-mail-add@company.com>" from "Router" subject "Routing Table Change" body "$msg  $_cli_result"
+ 
+ 
+event manager applet route-table-monitor
+event tag e1 routing network 0.0.0.0/0 ge 1 vrf name mandant1 maxrun 2
+event tag e2 routing network 0.0.0.0/0 ge 1 vrf name mandant1
+trigger occurs 1
+  correlate event e1 or event e2
+action 1.0 syslog msg "Route changed: Type: $_routing_type, VRF: $_routing_vrf_name, $_routing_protocol, $_routing_network/$_routing_mask [$_routing_distance/$_routing_metric] via $_routing_lastgateway, $_routing_lastinterface"

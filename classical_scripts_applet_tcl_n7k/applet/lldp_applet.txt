@@ -1,0 +1,30 @@
+no event manager applet auto-update-lldp-port-description authorization bypass
+event manager applet auto-update-lldp-port-description authorization bypass
+description "Auto-update port-description based on LLDP neighbors info"
+action 0.0 comment "Event line regexp: Decide which interface to auto-update description on"
+event neighbor-discovery interface regexp .*Ethernet.*$ lldp add
+action 1.0 comment "Get Systemname have to be trimmed"
+action 1.1 regexp "^([^\.]+)\." $_nd_lldp_system_name match host
+action 2.0 comment "Get interface name and chassis data and system description"
+action 2.1 set int "$_nd_port_id"
+action 3.0 comment "Get long remote interface description by enabled capabilities: B,R ignore it"
+action 3.1 regexp "(T|S)" $_nd_lldp_enabled_capabilities_string
+action 3.2 if $_regexp_result eq 1
+action 3.3 set int "$_nd_lldp_port_description"
+action 3.4 end
+action 4.0 comment "Check old description if any"
+action 4.1 cli command "enable"
+action 4.11 cli command "config t"
+action 4.2 cli command "do show interface $_nd_local_intf_name | incl Description:"
+action 4.21 set olddesc "<none>"
+action 4.22 regexp "Description: (.*)" "$_cli_result" olddesc 
+action 5.0 cli command "interface $_nd_local_intf_name"
+action 5.1 cli command "description $host [$int] "
+action 5.2 cli command "do write"
+action 5.3 syslog msg "EEM script updated description on $_nd_local_intf_name from $olddesc to Description: $host [$int] and saved config"
+action 6.0 exit 1
+end
+
+clea lldp tabl	
+clear lldp cou
+

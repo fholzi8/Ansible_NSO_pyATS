@@ -1,0 +1,78 @@
+Configuring a Template for a Basic VoIP SLAs UDP Operation
+ 
+SUMMARY STEPS
+1.   enable
+2.   configureterminal
+3.   ipslaautotemplatetypeipudp-jittertemplate-name
+4.   codeccodec-type[advantage-factorvalue][codec-numpacketsnumber-of-packets][codec-intervalmilliseconds][codec-sizenumber-of-bytes] 
+5.   descriptiondescription
+6.   end
+
+DETAILED STEPS
+
+Command or Action
+
+Purpose
+Step 1
+enable
+Example:Router> enable   
+Enables privileged EXEC mode. 
+• Enter your password if prompted. 
+
+Step 2
+configureterminal
+Example:Router# configure terminal   
+Enters global configuration mode. 
+  
+Step 3
+ip sla autotemplate type ip udp-jitter template-name
+Example:Router(config)# ip sla auto template type ip voip_g711alaw   
+Begins configuring a template and enters IP SLA template configuration mode. 
+
+Step 4
+codeccodec-type[advantage-factorvalue][codec-numpacketsnumber-of-packets][codec-intervalmilliseconds][codec-sizenumber-of-bytes] 
+Example:Router(config-tplt-udp-jtr)# codec g711alaw   
+Sets the codec for the operation being configured. 
+
+Step 5
+descriptiondescription
+Example:Router(config-tplt-udp-jtr)# description oper template for voip udp   
+(Optional) Adds descriptive text to the template being configured. 
+
+Step 6
+end
+Example:Router(config-tplt-udp-jtr)# end 
+
+Configuring Automatic Registration of Responder on the Destination Device
+ 
+SUMMARY STEPS
+1.   enable
+2.   configureterminal
+3.   ipslaresponderauto-register{source-ipaddress|source-hostname} [client-id client-id] [endpoint-list template-name] [retry-timer minutes]
+4.   exit
+
+DETAILED STEPS
+
+Command or Action
+
+Purpose
+
+Step 1
+enable
+Example:Router> enable   
+Enables privileged EXEC mode. 
+• Enter your password if prompted.
+   
+Step 2
+configureterminal
+Example:Router# configure terminal   
+Enters global configuration mode.
+   
+Step 3
+ipslaresponderauto-register{source-ipaddress|source-hostname} [client-id client-id] [endpoint-list template-name] [retry-timer minutes]
+Example:Router(config)# ip sla responder auto-register 10.1.1.23 endpoint-list autolist   
+Enables destination to register with source.
+   
+Step 4
+exit
+Example:Router(config)# exit 
