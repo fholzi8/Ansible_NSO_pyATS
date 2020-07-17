@@ -1,0 +1,34 @@
+wxt4less.com,SOA {{dns.wxt4less.com hostmaster.wxt4less.com 13013001 21600 7200 604800 7200}}
+wxt4less.com,NS {dns.wxt4less.com dns3.wxt4less.com}
+wxt4less.com,MX {{5 mail.wxt4less.com} {10 mail2.wxt4less.com}}
+wxt4less.com,A, {69.3.36.102}
+wxt4less.com,AAAA,jim {2607:f100:3:164:fa12:1c:bee:14}
+wxt4less.com,A,jim {69.3.36.94}
+wxt4less.com,A,www {69.3.36.98}
+wxt4less.com,A,mail {69.3.36.99}
+wxt4less.com,A,test {69.3.36.100}
+wxt4less.com,SRV,_sip {{0 0 5060 siptarget.wxt4less.com}}
+wxt4less.com,CNAME,dns {ns.wxt4less.com}
+wxt4less.com,CNAME,dns2 {dns2.wxt4less.com}
+wxt4less.com,HINFO,www {{Core i3} {Win7}}
+--
+36.3.69.in-addr.arpa,SOA {{dns.wxt4less.com hostmaster.wxt4less.com 13013001 21600 7200 604800 3600}}
+36.3.69.in-addr.arpa,PTR,100 {test.wxt4less.com}
+36.3.69.in-addr.arpa,PTR,98 {www.wxt4less.com}
+--
+wxt4home.com,SOA {{dns.wxt4home.com hostmaster.wxt4home.com 13013001 21600 7200 604800 3600}}
+wxt4home.com,NS {dns.wxt4home.com dns3.wxt4home.com}
+wxt4home.com,MX {{5 mail.wxt4home.com} {10 mail2.wxt4home.com}}
+wxt4home.com,A, {66.55.136.222}
+wxt4home.com,A,frank {66.55.136.223}
+--
+g.wxt4home.com,SOA {{dns.wxt4home.com hostmaster.wxt4home.com 13013001 21600 7200 604800 3600}}
+g.wxt4home.com,NS {dns.wxt4home.com dns3.wxt4home.com}
+g.wxt4home.com,MX {{5 mail.wxt4home.com} {10 mail2.wxt4home.com}}
+g.wxt4home.com,A, {66.55.136.201}
+g.wxt4home.com,A,jimbo {66.55.136.202}
+---
+55.66.in-addr.arpa,SOA {{dns.wxt4home.com hostmaster.wxt4home.com 13013001 21600 7200 604800 3600}}
+55.66.in-addr.arpa,PTR,223.136 {frank.wxt4home.com}
+55.66.in-addr.arpa,PTR,202.136 {jimbo.g.wxt4home.com}
+---

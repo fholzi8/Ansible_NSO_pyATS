@@ -1,0 +1,29 @@
+Die Switchports, an denen die EMC-Storage 1 in Schrank hängt, müssen in das richtig 
+VLAN (LINUXDMZ, 172.16.10.0/24) vrschoben werden. Für zwei dieser Ports ist das bereits geschehen, zwei Ports fehlen noch.
+
+ Es handelt sich um die folgenden Ports:
+- swt107, Port 13, Beschriftung: EMC1-server2-cge0
+- swt107, Port 14, Beschriftung: EMC1-server3-cge0
+- swt108, Port 13, Beschriftung: EMC1-server2-cge2
+- swt108, Port 14, Beschriftung: EMC1-server3-cge2
+
+ Ferner muß von Seiten NAS ein 3m langes rotes Patchkabel bereitgestellt werden.
+
+ Sobald die Konfiguration der VLANs erfolgt ist muß der derzeitige IST-Stand 
+ der Patchung durch Personal vor Ort an den SOLL-Stand angepasst werden.Der derzeitige IST-Stand ist:
+
+- swt108, Port 13: EMC1-server3-cge0
+- swt108, Port 14: EMC1-server3-cge2
+- swt107, Port 13: EMC1-server3-cge0
+- swt107, Port 14: EMC1-server2-cge0 <- Kabel defekt
+
+
+  Das Korrigieren der Patchung ist keine Aufgabe, die zwingend durch Mitglieder des 
+  NAS-Teams erfolgen muß und ist hier nur zu Dokumentationszwecken angegeben.
+  
+  
+  
+set resolve [exec "dns $ifaddr"]
+			if {[regexp -nocase {.*arpa > (.*)} $resolve ignore hostname}{
+				set neighbor(NAME) $hostname
+			}

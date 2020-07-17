@@ -1,0 +1,87 @@
+
+Copyright (c) 2012 Scott Tudor <top.project@gmail.com>
+All rights reserved.
+
+Limitation of Liability
+
+THIS SCRIPT AND ASSOCIATED INFORMATION IS PROVIDED TO THE REQUESTOR ON AN "AS IS"
+EVALUATION PURPOSE ONLY BASIS, SOLELY UNDER THE USE AND DIRECTION OF THE 
+REQUESTOR, WITHOUT WARRANTY OF ANY KIND (EITHER EXPRESS OR IMPLIED), 
+INCLUDING BUT NOT LIMITED TO ANY IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A SPECIFIC OR GENERAL PURPOSE AND THOSE ARISING BY STATUTE OR
+BY LAW, OR FROM A CAUSE OF DEALING OR USAGE OF TRADE. 
+
+IN NO EVENT, REGARDLESS OF CAUSE, SHALL THE AUTHOR OF THIS SCRIPT BE LIABLE
+FOR ANY INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE OR CONSEQUENTIAL DAMAGES OF ANY
+KIND, WHETHER ARISING UNDER BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE),
+STRICT LIABILITY OR OTHERWISE, AND WHETHER BASED ON THIS AGREEMENT OR 
+OTHERWISE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+
+
+!
+! *************************
+! Copy top.tcl to flash 
+! *************************
+!
+copy tftp flash
+Address or name of remote host []? x.x.x.x
+Source filename []? top.tcl
+Destination filename [top.tcl]?
+
+!
+!
+! ***************************
+! Configure Flexible Netflow
+! ***************************
+!
+config t
+!
+!
+flow record FlowRecord1
+ match ipv4 protocol
+ match ipv4 source address
+ match ipv4 destination address
+ match transport source-port
+ match transport destination-port
+ match interface input
+ collect interface output
+ collect flow direction
+ collect counter bytes
+ collect counter packets
+ collect timestamp sys-uptime first
+!
+!
+!
+! ****************************
+! Set Netflow cache Parameters
+! ****************************
+!
+flow monitor FlowMonitor1
+ record FlowRecord1
+ cache timeout active 86520
+ cache entries 32768            	! 16384-65536 depending on traffic volume at site
+!
+!
+!
+! ***************************
+! Apply Netflow to An Interface
+! ***************************
+!
+int <x>
+  ip flow monitor FlowMonitor1 input
+  ip flow monitor FlowMonitor1 output
+exit
+!
+!
+!
+! *********************
+! Setup EEM and alias
+! *********************
+!
+event manager directory user policy "flash:/"
+event manager scheduler script thread class Z number 5
+event manager policy top.tcl type user class Z
+!
+alias exec top event manager run top.tcl
+
