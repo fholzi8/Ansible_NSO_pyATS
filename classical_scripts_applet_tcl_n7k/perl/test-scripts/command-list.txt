@@ -1,0 +1,23 @@
+show tech-support 
+
+show cde health
+show np 1 me-stats "-s tcp -v" | include queue 
+show np 2 me-stats "-s tcp -v" | include queue 
+show np 3 me-stats "-s tcp -v" | include queue 
+show np 4 me-stats "-s tcp -v" | include queue 
+show np 1 me-stats -sdrop
+show np 2 me-stats -sdrop
+show np 3 me-stats -sdrop
+show np 4 me-stats -sdrop
+show np 1 me-stats "-sicm -M1" | ex " 0$"
+show np 2 me-stats "-sicm -M1" | ex " 0$"
+show np 3 me-stats "-sicm -M1" | ex " 0$"
+show np 4 me-stats "-sicm -M1" | ex " 0$"
+show np 1 me-stats -Q
+show np 2 me-stats -Q
+show np 3 me-stats -Q
+show np 4 me-stats -Q
+show processes cpu | inc util
+show stats loadbalance
+
+show tech-support 
