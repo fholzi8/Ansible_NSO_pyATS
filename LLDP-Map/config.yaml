@@ -6,6 +6,6 @@ core:
 inventory:
     plugin: nornir.plugins.inventory.simple.SimpleInventory
     options:
-        host_file: "/home/ipvzero/Nornir-Nuggets/hosts.yaml"
-        group_file: "/home/ipvzero/Nornir-Nuggets/groups.yaml"
-        defaults_file: "/home/ipvzero/Nornir-Nuggets/defaults.yaml"
+        host_file: "/Users/fholzapf/PycharmProjects/Ansible_NSO_pyATS/LLDP-Map/hosts.yaml"
+        group_file: "/Users/fholzapf/PycharmProjects/Ansible_NSO_pyATS/LLDP-Map/groups.yaml"
+        defaults_file: "/Users/fholzapf/PycharmProjects/Ansible_NSO_pyATS/LLDP-Map/defaults.yaml"
