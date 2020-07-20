@@ -189,3 +189,5 @@ Here are some good videos about pyATS, XPresso and NetworkAutomation: <a href="h
 
 
 Herer you can find the official documentation of pyATS: <a href="https://developer.cisco.com/docs/pyats/#!introduction">Here</a>
+
+Also at Julios Cisco Blog you will find a very good starting point for Network Orchestration and of course pyATS (part 12 - 16). :)
