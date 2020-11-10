@@ -19,6 +19,7 @@ Also, if the second task fails, what do you do? All the error logic is manual.
 The point is that NSO is not a “script engine” as Ansible is. So, in Ansible, everything has to be explicitly coded.
  
 For configuration, this means:
+
                 1- southbound modules (ok in Ansible the vendors give you this, however every vendor does it differently)
                 2- Business logic for Create / Delete and Modify.
                 3- Error Handling
