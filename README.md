@@ -170,6 +170,10 @@ Starting with a good use case, can be found here: <a href="https://github.com/jm
  * not open-source
  * training needed (but self-learning available <a href="https://developer.cisco.com/docs/nso/#!learning-nso/the-first-day"> Learning-NSO</a>
 
+<h4>NSO look-a-like "playbook"</h4>
+
+So, for a good comparison here a good example for managing NTP server with NSO: <a href="https://github.com/jabelk/ntp_server_example"> NSO NTP Server Example</a>
+
 <h4>Typical Questions</h4>
 
 <b>Question:</b>What means Stateful or Stateless regarding Ansible/NSO?
